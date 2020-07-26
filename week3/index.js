@@ -16,7 +16,7 @@ const tabBtn = document.querySelector('.tabBtn');
 const centerDefaultTab = document.querySelector('#centerDefaultTab');
 const centerTabBody = document.querySelector('#centerTabBody');
 const centerDefaultTabBody = document.querySelector('#centerDefaultTabBody');
-
+const toggle = document.querySelector('#toggle');
 // East
 const eastPanel = document.querySelector('#eastPanel');
 eastPanel.active = true;
@@ -353,6 +353,7 @@ testBtn.addEventListener('mouseout', destroyToolTip, false);
 centerTab.addEventListener('click', selectCenterTab, false);
 centerDefaultTab.addEventListener('click', selectCenterTab, false);
 tabBtn.addEventListener('click', closeTab, false);
+toggle.addEventListener('click', westClick, false);
 
 //South
 southBtn.addEventListener('click', southClick, false);

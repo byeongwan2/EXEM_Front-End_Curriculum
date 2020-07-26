@@ -80,8 +80,8 @@ body {
     display: flex;
     flex-direction: column;
 }
-.centerHead {
-    
+#toggle {
+    color: blue;
 }
 .eastPanel {    
     width: 20%;
