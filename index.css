@@ -1,0 +1,378 @@
+body {
+    background-color: #3892d3;   
+    font-size: 14px;
+    font-family: helvetica, arial, verdana, sans-serif;    
+    height: 100vh;    
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+}
+#north {
+    height: 32px;
+    right: auto;
+    margin: 4px;
+}
+.middlePanel {
+    height: 100%;
+    display: flex;
+}
+.southPanel {
+    display: flex;
+    flex-direction: column;
+    height: 20%;
+    width: 100%;
+}
+#southBtn {
+    float: right;
+}
+.southPlaceholder {
+    height: 32px;    
+    width: 100%; 
+}
+.southPlaceholder > .panelBody{
+    display: none;
+}
+.openSouthPanel {
+    animation-name: openSouthPanel;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+@keyframes openSouthPanel {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0%);
+    }
+}
+.closeSouthPanel {
+    animation-name: closeSouthPanel;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+@keyframes closeSouthPanel {
+    from {
+        transform: translateY(0%);
+    }
+    to {
+        transform: translateY(100%);
+    }
+}
+#toolTip {
+    position: relative;
+    top: 120%; 
+    left: 65%; 
+    background-color: blueviolet;
+}
+.toolTip {    
+    visibility: visible;
+}
+.panel {    
+    height: 100%;
+    background-color: #157fcc;    
+}
+.westPanel {
+    left: 0%;
+    width: 20%;
+    margin-right: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.centerHead {
+    
+}
+.eastPanel {    
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+}
+.panelHead {
+    font-weight: bold;
+    height: 32px;
+    color: white;    
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.panelHead > img{
+    float: right;
+}
+#centerPanel {
+    display: flex;
+    flex-direction: column;
+    width: 100%;    
+}
+.centerPanelHead {
+    display: flex;
+    font-weight: bold;
+    height: 32px;
+    color: white;
+}
+.centerPanelHead > div > span{
+    padding: 10px;
+}
+
+.selectedHead {
+    background-color: #add2ed;
+    color: #157fce;
+    height: 100%;
+}
+.unselectedHead {
+    background-color: #4b9cd7;
+    height: 100%;
+}
+.tabBtn {
+    width: 12px;
+    height: 12px;    
+    background-image: url(https://docs.sencha.com/extjs/4.2.2/extjs-build/resources/ext-theme-neptune/images/tab/tab-default-close.png);
+}
+
+.tabBtn:hover {
+    opacity: 0.6;
+}
+.close {
+    display: none;
+}
+.panelBody {
+    background-color: white;
+    height: 100%;    
+}
+#westSubPanel {
+    position: relative;
+}
+.openWestPanel {
+    animation-name: openWestPanel;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+@keyframes openWestPanel {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+.closeWestPanel{
+    animation-name: closeWestPanel;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+@keyframes closeWestPanel{
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+.westPlaceholder{
+    display: flex;
+    flex-direction: column;
+    width: 2%;
+}
+.westPlaceholder > .panelBody {
+    visibility: hidden;
+}
+.subPanelHeader {
+    background-color: #dfeaf2;
+    font-weight: bold;
+    color: #666666;
+    margin: 5px;
+    height: 32px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.subPanelBody {
+    color: black;
+    margin: 5px;
+}
+.navImg {
+    background-image: url(https://docs.sencha.com/extjs/4.2.2/extjs-build/examples/shared/icons/fam/folder_go.png);
+    width: 16px; /* 박스 사이즈 */
+    height: 16px;    
+}
+#navBtn {
+    float: right;
+}
+#set {    
+    top: 65%;
+}
+.setImg {
+    background-image: url(https://docs.sencha.com/extjs/4.2.2/extjs-build/examples/shared/icons/fam/folder_wrench.png);
+    width: 16px; /* 박스 사이즈 */
+    height: 16px;
+}
+#setBtn {
+    float: right;
+}
+.openSet {
+    position: relative;
+    animation-name: openSet;
+    animation-fill-mode: both;
+    animation-duration: 0.5s;
+}
+.hidden {
+    visibility: hidden;
+}
+@keyframes openSet {
+    from {
+        transform: translateY(0%);
+    }
+    to {
+        transform: translateY(-600%);
+    }
+}
+.closeSet {
+    position: relative;
+    animation-name: closeSet;
+    animation-fill-mode: both;
+    animation-duration: 0.5s;
+}
+@keyframes closeSet {
+    from {
+        transform: translateY(-600%);
+    }
+    to {
+        transform: translateY(0%);
+    }
+}
+#inf {    
+    top: 60%;
+}
+.infImg {
+    background-image: url(https://docs.sencha.com/extjs/4.2.2/extjs-build/examples/shared/icons/fam/information.png);
+    width: 16px; /* 박스 사이즈 */
+    height: 16px;
+}
+#infBtn {
+    float: right;
+}
+.openInf {
+    position: relative;
+    animation-name: openInf;
+    animation-fill-mode: both;
+    animation-duration: 0.5s;
+}
+@keyframes openInf {
+    from {
+        transform: translateY(0%);
+    }
+    to {
+        transform: translateY(-600%);
+    }
+}
+.closeInf {
+    position: relative;
+    animation-name: closeInf;
+    animation-fill-mode: both;
+    animation-duration: 0.5s;
+}
+@keyframes closeInf {
+    from {
+        transform: translateY(-600%);
+    }
+    to {
+        transform: translateY(0%);
+    }
+}
+.openEastPanel {
+    animation-name: openEastPanel;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+@keyframes openEastPanel {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+
+.closeEastPanel {
+    animation-name: closeEastPanel;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+@keyframes closeEastPanel {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+.eastPlaceholder{    
+    display: flex;
+    flex-direction: column;
+    width: 2%;    
+}
+.tabBody {
+    font-size: 13px;    
+}
+
+.eastPlaceholder > .panelBody {
+    display: none;
+}
+.eastPlaceholder > .eastPanelTail {
+    display: none;
+}
+.eastPanelTail {
+    display: flex;
+    font-weight: bold;
+    height: 32px;
+    color: white;
+}
+.testBtn {        
+    float: right;
+    margin: 5px;
+    padding: 5px;
+}
+.dataTable {    
+    padding: 5px 10px 4px 10px;
+    margin: 0;
+    width: 100%;
+    text-align: left;
+}
+#tableHead {
+    font-weight: bold;
+    background-color: #f5f5f5;        
+}
+.evenRow {
+    background-color: #fafafa;
+}
+.imgSprites{
+    background-image: url(https://docs.sencha.com/extjs/4.2.2/extjs-build/resources/ext-theme-neptune/images/tools/tool-sprites.png);    
+    opacity: 0.5;
+    width: 16px; /* 박스 사이즈 */
+    height: 16px;       
+    background-size: 16px; /* 이미지 사이즈 */
+}
+.imgSprites:hover {
+    opacity: 0.6;
+}
+.imgRight {
+    background-position: 0 -176px;       
+}
+.imgLeft {
+    background-position: 0 -192px;       
+}
+.imgDown {
+    background-position: 0 -208px;       
+}
+.imgUp {
+    background-position: 0 -224px;       
+}
+.imgPlus {
+    background-position: 0 -256px;
+    opacity: 1;
+}
+.imgMinus {
+    background-position: 0 -272px;       
+    opacity: 1;
+}
