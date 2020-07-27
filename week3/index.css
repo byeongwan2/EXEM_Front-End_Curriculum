@@ -199,8 +199,10 @@ body {
 #navBtn {
     float: right;
 }
-#set {    
-    top: 65%;
+#set {
+    position: absolute;
+    width: 100%;
+    top: 90%;
 }
 .setImg {
     background-image: url(https://docs.sencha.com/extjs/4.2.2/extjs-build/examples/shared/icons/fam/folder_wrench.png);
@@ -211,7 +213,7 @@ body {
     float: right;
 }
 .openSet {
-    position: relative;
+    position: absolute;
     animation-name: openSet;
     animation-fill-mode: both;
     animation-duration: 0.5s;
@@ -224,25 +226,27 @@ body {
         transform: translateY(0%);
     }
     to {
-        transform: translateY(-600%);
+        transform: translateY(-900%);
     }
 }
 .closeSet {
-    position: relative;
+    position: absolute;
     animation-name: closeSet;
     animation-fill-mode: both;
     animation-duration: 0.5s;
 }
 @keyframes closeSet {
     from {
-        transform: translateY(-600%);
+        transform: translateY(-900%);
     }
     to {
         transform: translateY(0%);
     }
 }
 #inf {    
-    top: 60%;
+    position: absolute;
+    width: 100%;
+    top: 95%;
 }
 .infImg {
     background-image: url(https://docs.sencha.com/extjs/4.2.2/extjs-build/examples/shared/icons/fam/information.png);
@@ -263,7 +267,7 @@ body {
         transform: translateY(0%);
     }
     to {
-        transform: translateY(-600%);
+        transform: translateY(-900%);
     }
 }
 .closeInf {
@@ -274,7 +278,7 @@ body {
 }
 @keyframes closeInf {
     from {
-        transform: translateY(-600%);
+        transform: translateY(-900%);
     }
     to {
         transform: translateY(0%);
