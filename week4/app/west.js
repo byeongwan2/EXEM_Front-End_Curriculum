@@ -2,9 +2,6 @@ Ext.define('west', {
     extend: 'Ext.panel.Panel',
     width: 200,
     region: 'west',
-    header: {
-        title: 'West',
-    },
     collapsed: false,
     collapsible: true,
     collapseMode: 'header',
@@ -14,6 +11,9 @@ Ext.define('west', {
         titleCollapse: true,
         animate: true
     },        
+    header: {
+        title: 'West'
+    },
     items: [{
         title: 'Navigation',
         html: "Hi. I'm the west panel."
