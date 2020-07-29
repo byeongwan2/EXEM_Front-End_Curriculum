@@ -10,10 +10,7 @@ Ext.application({
             const container = Ext.create('Ext.container.Viewport', {
                 layout: 'border',
                 items: [north, west,center,east,south],
-            });                                          
-            // var testPanel = Ext.create('Test.Panel',{
-            //     renderTo: Ext.getBody()
-            // });
-        }
+            });                                                      
+        }    
 })
 
