@@ -1,5 +1,3 @@
-const westPlaceholder = Ext.create('Ext.panel.Header');
-
 Ext.define('west', {    
     extend: 'Ext.panel.Panel',
     width: 200,
