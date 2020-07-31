@@ -1,13 +1,11 @@
 Ext.define('south', {
     extend: 'Ext.panel.Panel',
-    height: 200,
     region:'south',
+    title: 'South',    
+    height: 200,
     collapsed: true,
-    collapsible: true,
-    collapseMode: 'header',
-    collapseDirection: 'bottom',
-    header: {
-        title: 'South'
-    },
+    collapsible: true,    
+    collapseDirection: 'bottom',    
+    split: true,
     html: 'south - generally for informational stuff, also could be for status bar'
 });

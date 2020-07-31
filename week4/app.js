@@ -1,16 +1,33 @@
 Ext.application({
     name: 'week4',
+    requires: [
+        'north',
+        'west',
+        'center',
+        'east',
+        'south'
+    ],
     launch:
-        function () {
-            const north = Ext.create('north');
-            const west = Ext.create('west');
-            const center = Ext.create('center');
-            const east = Ext.create('east');
-            const south = Ext.create('south');
-            const container = Ext.create('Ext.container.Viewport', {
+        function () {                
+            Ext.Ajax.request({
+                url: 'https://docs.sencha.com/extjs/4.2.2/extjs-build/examples/layout/complex.html',
+                params: {
+                    id:1
+                },
+                success: function(response) {
+                    let text = response.responseText;
+                    console.log(text);
+                }
+            })        
+            Ext.create('Ext.container.Viewport', {
                 layout: 'border',
-                items: [north, west,center,east,south],
-            });                                                      
-        }    
+                items: [
+                    Ext.create('north'),
+                    Ext.create('west'), 
+                    Ext.create('center'), 
+                    Ext.create('east'),
+                    Ext.create('south'),                                        
+                ]
+            }); 
+        }
 })
-
