@@ -1,4 +1,3 @@
-document.getelementby
 Ext.define('west', {
     extend: 'Ext.panel.Panel',
     region: 'west',
@@ -14,16 +13,16 @@ Ext.define('west', {
         {
             title: 'Navigation',
             iconCls: 'nav-img',
-            html: "Hi. I'm the west panel."
+            html: 'Hi. I\'m the west panel.'
         },
         {
             title: 'Settings',
             iconCls: 'set-img',
-            html: "Some settings in here."
+            html: 'Some settings in here.'
         },
         {
             title: 'Information',
             iconCls: 'inf-img',
-            html: "Some info in here."
+            html: 'Some info in here.'
         }]
 });

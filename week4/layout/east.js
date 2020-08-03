@@ -8,9 +8,9 @@ Ext.define('east', {
     collapsible: true,
     collapseMode: 'header',
     collapseDirection: 'right',    
-    layout: 'fit',
+    layout: 'fit',    
     tbar: [
-        '->',        
+        '->',
         {
             xtype: 'button',                    
             text: 'test',                        
@@ -18,7 +18,7 @@ Ext.define('east', {
                 text: 'Test Button',
                 width: 70
             }
-        }
+        }   
     ],
     items: [
         {
