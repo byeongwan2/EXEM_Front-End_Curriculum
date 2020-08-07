@@ -1,4 +1,3 @@
-document.querySelector
 Ext.define('east', {
     extend: 'Ext.panel.Panel',
     region: 'east',
@@ -6,8 +5,7 @@ Ext.define('east', {
     width: 250,
     margin: '0 5 0 0',
     split: true,    
-    collapsible: true,
-    collapseMode: 'header',
+    collapsible: true,    
     collapseDirection: 'right',    
     layout: 'fit',    
     tbar: [
@@ -19,7 +17,7 @@ Ext.define('east', {
                 text: 'Test Button',
                 width: 70
             }
-        }   
+        }
     ],
     items: [
         {
@@ -35,8 +33,7 @@ Ext.define('east', {
                     title: 'Property Grid',
                     closable: true,                    
                     items: {
-                        xtype: 'propertygrid',
-                        forceFit: true,
+                        xtype: 'propertygrid',                        
                         source: {
                             '(name)': 'Properties Grid',
                             'grouping': 'false',

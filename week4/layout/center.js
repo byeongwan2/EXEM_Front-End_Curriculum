@@ -6,7 +6,7 @@ Ext.define('center', {
             title: 'Close Me',
             closable: true,
             autoScroll: true,
-            html: `
+            html:`
             <b>
                 Done reading me? Close me by clicking the X in the top right corner.
             </b> 
