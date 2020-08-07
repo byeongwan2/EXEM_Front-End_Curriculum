@@ -1,13 +1,14 @@
 <template>
     <button
-     v-on:click="computeEvent"
-     class="btn operator"> {{ "=" }} </button>
+        @click="computeEvent"
+        class="button operator"
+    >
+        =
+    </button>
 </template>
 
 <script>
-import BaseButton from './BaseButton.vue'
-export default {
-    extends: BaseButton,
+export default {    
     props: {
         data: String
     },
@@ -18,7 +19,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>

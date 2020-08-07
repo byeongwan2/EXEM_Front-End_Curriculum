@@ -1,125 +1,133 @@
 <template>
   <div class="calculator">
-    <display-area v-bind:operator="operator" v-bind:inputNum="inputNum.value"></display-area>
+    <display-area
+      :inputNumber="inputNumber.value"
+      :operator="operator"
+    />
     <div class="input-area">
       <section class="number-area">
-        <percent-button></percent-button>              
-        <sign-button v-on:setSign="setSign"></sign-button>
-        <clear-button v-on:clear="clear"></clear-button>
+        <percent-button @percentData="percentData"/>
+        <sign-button @setSign="setSign"/>
+        <clear-button @clearData="clearData"/>
         <num-button
-          v-for="numData in numDatas"
-          v-bind:key="numData"
-          v-bind:num="numData"
-          v-on:addNum="addNum">
-        </num-button>
-        <point-button v-on:setPoint="setPoint"></point-button>
-        <num-button v-bind:num="0"
-          v-on:addNum="addNum"
-          class="zero-btn"></num-button>
+          v-for="numberData in numberDatas"
+          :key="numberData"
+          :number="numberData"
+          @addNumber="addNumber"
+        />
+        <point-button @setPoint="setPoint"/>
+        <num-button
+          :number="'0'"
+          @addNumber="addNumber"
+          class="zero-button"
+        />
       </section>
       <section class="operator-area">
         <operator-button
           v-for="operator in operators"
-          v-bind:key="operator"
-          v-bind:operator="operator"
-          v-on:setOper="setOper"
-        ></operator-button>
-        <compute-button v-on:computeData="computeData"></compute-button>
-    </section>
-    </div>    
+          :key="operator"
+          :operator="operator"
+          @setOperator="setOperator"
+        />
+        <compute-button @computeData="computeData"/>
+      </section>
+    </div>
   </div>
 </template>
 
 <script>
 import DisplayArea from './components/DisplayArea.vue';
+import BaseButton from './components/BaseButton.vue';
 import ClearButton from './components/ClearButton.vue';
 import SignButton from './components/SignButton.vue';
 import PercentButton from './components/PercentButton.vue';
-import NumButton from './components/NumButton.vue';
+import NumberButton from './components/NumberButton.vue';
 import PointButton from './components/PointButton.vue';
 import OperatorButton from './components/OperatorButton.vue';
 import ComputeButton from './components/ComputeButton.vue';
 
 export default {
+  extends: BaseButton,
   components: {
     'display-area': DisplayArea,
     'clear-button': ClearButton,
     'sign-button': SignButton,
     'percent-button': PercentButton,
-    'num-button': NumButton,
+    'num-button': NumberButton,
     'point-button': PointButton,
     'operator-button': OperatorButton,
     'compute-button': ComputeButton
   },
   data: function() {
     return {
-      firstNum: '',
-      secondNum: '',      
-      inputNum: {
+      firstNumberber: '',
+      secondNumberber: '',      
+      inputNumber: {
         value: '0',        
         point: false, // true: flaot , false: int
-        assign: false // true: assign secondNum, false: assign firstNum
+        assign: false // true: assign secondNumber, false: assign firstNumber
       },
       operator: '',      
-      numDatas: ['9', '8', '7', '6', '5', '4', '3', '2', '1'],
+      numberDatas: ['9', '8', '7', '6', '5', '4', '3', '2', '1'],
       operators: ['÷', '×', '-', '+'],
     }
   },
   methods: {
-    addNum: function(value) {
-      if(this.operator && !this.inputNum.assign) {
-        this.firstNum = parseFloat(this.inputNum.value);
-        this.inputNum.value = '0';
-        this.inputNum.assign = true;
+    addNumber: function(value) {
+      if(this.operator && !this.inputNumber.assign) {
+        this.firstNumber = parseFloat(this.inputNumber.value);
+        this.inputNumber.value = '0';
+        this.inputNumber.assign = true;
       }
-      this.inputNum.value !== '0' ? this.inputNum.value += value : this.inputNum.value = value;            
+      if(this.inputNumber.value === 'Infinity') this.inputNumber.value = '0';
+      this.inputNumber.value !== '0' ? this.inputNumber.value += value : this.inputNumber.value = value;
     },    
-    setPoint: function() {
-      // 소수점이 있고, 끝자리가 .이면
-      if(this.inputNum.point && this.inputNum.value[this.inputNum.value.length - 1] === '.') {
-        this.inputNum.value = this.inputNum.value.slice(0, -1);
+    setPoint: function() {      
+      if(this.inputNumber.point && this.inputNumber.value[this.inputNumber.value.length - 1] === '.') {
+        this.inputNumber.value = this.inputNumber.value.slice(0, -1);
       } else {
-        this.inputNum.value += '.'
+        this.inputNumber.value += '.'
       }
-      this.inputNum.point = !this.inputNum.point;
+      this.inputNumber.point = !this.inputNumber.point;
     },
-    setOper: function(value) {
+    setOperator: function(value) {
       this.operator = value;
     },
+    setSign: function() {
+      if(this.inputNumber.value[0] === '0') return;      
+      if(this.inputNumber.value[0] === '-') this.inputNumber.value = this.inputNumber.value.slice(1,);
+      else this.inputNumber.value = '-' + this.inputNumber.value;
+    },
     computeData: function() {
-      this.secondNum = parseFloat(this.inputNum.value);
+      this.secondNumber = parseFloat(this.inputNumber.value);
       // 콜백함수로 변경하기
       switch(this.operator) {
         case '+':
-          this.inputNum.value = (this.firstNum + this.secondNum).toString();
+          this.inputNumber.value = (this.firstNumber + this.secondNumber).toString();
           break;
         case '-':
-          this.inputNum.value = (this.firstNum - this.secondNum).toString();
+          this.inputNumber.value = (this.firstNumber - this.secondNumber).toString();
           break;
         case '×':
-          this.inputNum.value = (this.firstNum * this.secondNum).toString();
+          this.inputNumber.value = (this.firstNumber * this.secondNumber).toString();
           break;
         case '÷':
-          this.inputNum.value = (this.firstNum / this.secondNum).toString();
+          this.inputNumber.value = (this.firstNumber / this.secondNumber).toString();          
           break;
-      }            
-      this.inputNum.assign = false;
+      }
+      this.inputNumber.assign = false;
       this.operator = '';
     },
-    clear: function() {
-      this.firstNum = '',
-      this.secondNum = '',
-      this.inputNum.value = '0',      
-      this.inputNum.point = false,
-      this.inputNum.assign = false,
-      this.operator = '',
-      this.result = 0
-    },
-    
-    setSign: function() {
-      if(this.inputNum.value[0] === '0') return;      
-      if(this.inputNum.value[0] === '-') this.inputNum.value = this.inputNum.value.slice(1,);
-      else this.inputNum.value = '-' + this.inputNum.value;
+    clearData: function() {
+      this.firstNumber = '',
+      this.secondNumber = '',
+      this.inputNumber.value = '0',      
+      this.inputNumber.point = false,
+      this.inputNumber.assign = false,
+      this.operator = ''
+    },        
+    percentData: function() {
+      this.inputNumber.value = (parseFloat(this.inputNumber.value) / 100).toString();
     }
   }
 }
@@ -142,8 +150,5 @@ export default {
   }
   .input-area {
     display: flex;
-  }
-  .zero-btn {
-        width: 150px;
   }
 </style>

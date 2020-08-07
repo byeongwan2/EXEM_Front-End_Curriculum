@@ -1,18 +1,17 @@
 <template>
-    <button v-on:click="clearEvent"
-            class="btn">
-        {{ 'C' }}
+    <button
+        @click="clearDataEvent"
+        class="button"
+    >
+            C
     </button>
 </template>
 
 <script>
-import BaseButton from './BaseButton.vue'
-
 export default {
-    extends: BaseButton,
     methods: {
-        clearEvent: function() {
-            this.$emit('clear');
+        clearDataEvent: function() {
+            this.$emit('clearData');
         }
     }
 }

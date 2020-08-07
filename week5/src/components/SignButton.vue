@@ -1,15 +1,14 @@
 <template>
-  <button v-on:click="signEvent"
-  class="btn">
-      {{ "+/-" }}
-  </button>
+    <button
+        @click="signEvent"
+        class="button"
+    >
+        +/-
+    </button>
 </template>
 
 <script>
-import BaseButton from './BaseButton.vue'
-
-export default {
-    extends: BaseButton,
+export default {    
     methods: {
         signEvent: function() {
             this.$emit('setSign');
@@ -17,7 +16,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>

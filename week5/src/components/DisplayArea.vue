@@ -1,7 +1,7 @@
 <template>
     <div class="display">
         <section> {{ operator }} </section>
-        <section class="input-num"> {{ inputNum }} </section>
+        <section class="input-number"> {{ inputNumber }} </section>
     </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
         operator: {
             type: String
         },
-        inputNum: {
+        inputNumber: {
             type: String
         }
     }
@@ -24,10 +24,9 @@ export default {
         height: 100px;
         background-color: black;
         color: white;
-        text-align: right;
-        
+        text-align: right;        
     }
-    .input-num {
+    .input-number {
         font-size: 60px;
         font-weight: 100;        
     }

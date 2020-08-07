@@ -1,14 +1,6 @@
-<script>
-export default {
-    methods: {
-        action: function() {
-            
-        }
-    }
-}
-</script>
-<style>
-    .btn {
+<style scoped>
+    /* scoped 조사하기 */
+    .button {
             width: 75px;
             height: 75px;
             float: right;
@@ -19,8 +11,11 @@ export default {
             border: 1px solid black;
             background-color: #ececec;
     }
-    .btn:active {
+    .button:active {
         opacity: 0.4;
+    }
+    .zero-button {
+        width: 150px;
     }
     .operator {
         background-color: #F47F27;

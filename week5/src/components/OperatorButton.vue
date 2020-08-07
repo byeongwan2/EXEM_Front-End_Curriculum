@@ -1,19 +1,20 @@
 <template>
-    <button v-on:click="setOperEvent"
-            class="btn operator">  {{ operator }} </button>  
+    <button    
+        @click="setOperatorEvent"
+        class="button operator"
+    >
+        {{ operator }}
+    </button>
 </template>
 
 <script>
-import BaseButton from './BaseButton.vue'
-
-export default {
-    extends: BaseButton,
+export default {    
     props: {
         operator : String
     },
     methods: {
-        setOperEvent: function() {
-            this.$emit('setOper', this.operator);
+        setOperatorEvent: function() {
+            this.$emit('setOperator', this.operator);
         }
     }
 }

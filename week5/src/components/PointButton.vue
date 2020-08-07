@@ -1,5 +1,10 @@
 <template>
-    <button class="btn" v-on:click="setPointEvent"> . </button>
+    <button
+        @click="setPointEvent"
+        class="button"
+    >
+        .
+    </button>
 </template>
 
 <script>
