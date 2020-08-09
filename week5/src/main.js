@@ -4,5 +4,10 @@ import App from './App.vue'
 Vue.config.productionTip = false
 
 new Vue({
+  
   render: h => h(App),
 }).$mount('#app')
+Vue.config.keyCodes = {
+  v: 86,
+  f2: 113,
+}
