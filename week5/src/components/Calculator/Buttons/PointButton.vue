@@ -11,6 +11,6 @@
 import BaseButton from './BaseButton.vue'
 
 export default {
-  extends: BaseButton  
+  extends: BaseButton
 }
 </script>

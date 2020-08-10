@@ -56,25 +56,19 @@ export default {
     },
     addComma: function() {      
       let count = 0;
-      if(this.intNumber.length % 3 === 0) {
-        count = (this.intNumber.length / 3) -1;
-      } else {
-        count = Math.floor(this.intNumber.length / 3);
-      }
-      const arrNumber = this.intNumber.split('');
       let idx = -3;
+      const arrNumber = this.intNumber.split('');
+      if(this.intNumber.length % 3 === 0) count = (this.intNumber.length / 3) -1;
+      else count = Math.floor(this.intNumber.length / 3);      
       for(let i = 0; i < count; i++) {
         arrNumber.splice(idx, 0, ',');
         idx -= 4;
-      }      
+      }
       return arrNumber.join('');
     },    
     addSign: function() {
-      if(this.isSign) {
-        return "-" + this.addComma() + this.floatNumber;
-      } else {
-        return this.addComma() + this.floatNumber;
-      }
+      if(this.isSign) return "-" + this.addComma() + this.floatNumber;
+      else return this.addComma() + this.floatNumber;      
     },
     resizeFont: function() {
       const numberSize = this.inputNumber.length;
