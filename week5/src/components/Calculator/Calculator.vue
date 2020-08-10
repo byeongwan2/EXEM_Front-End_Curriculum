@@ -3,6 +3,9 @@
     <display-area    
       v-bind:inputNumber="inputNumber"
       v-bind:operator="operator"
+      v-bind:isSign="isSign"
+      v-bind:isInfinity="isInfinity"
+      v-bind:pointIdx="pointIdx"
     />
     <input-button-area
       v-on:percent="percent"
@@ -26,62 +29,87 @@ export default {
     'input-button-area': InputButtonArea
   },
   data: function() {
-    return {      
+    return {
       prevNumber: 0,
       nextNumber: 0,
       inputNumber: '0',
       operator: '',
       isAssign: false,
-      target: 'prev'
+      isSign: false,
+      isInfinity: false,
+      pointIdx: null
     }
   },
   methods: {
-    add: function(value) {      
+    add: function(value) {
+      if(this.isInfinity) this.clear();
       if(this.operator && !this.isAssign) {
-        this.prevNumber = parseFloat(this.inputNumber);        
+        this.prevNumber = this.strToNum();
         this.inputNumber = '0';
         this.isAssign = true;
+        this.isSign = false;
       }
-      // if(this.inputNumber.value === 'Infinity') this.inputNumber.value = '0';
+      if(this.inputNumber.length >= 16) return;
       this.inputNumber !== '0' ? this.inputNumber += value : this.inputNumber = value;
     },    
     point: function() {
-      const dotIdx = this.inputNumber.indexOf('.');
-      if(dotIdx > 0) return;
+      this.pointIdx = this.inputNumber.indexOf('.');
+      if(this.pointIdx > 0) return;
       this.inputNumber += '.';
+      this.pointIdx = this.inputNumber.length - 1;
     },
     setOperator: function(value) {
       this.operator = value;
     },
     sign: function() {
-      if(this.inputNumber[0] === '0') return;      
-      this.inputNumber[0] === '-' ? this.inputNumber = this.inputNumber.slice(1,) : this.inputNumber = '-' + this.inputNumber;
+      const numberSize = this.inputNumber.length;
+      if(this.inputNumber[0] === '0' && numberSize === 1) return;      
+      this.isSign = !this.isSign;
     },
-    compute: function() { // 계산만 -> toSting은 뷰 단에서
-      this.nextNumber = parseFloat(this.inputNumber);      
+    strToNum: function() {
+      if(this.isSign) {
+        return parseFloat(this.inputNumber) * -1;
+      } else {
+        return parseFloat(this.inputNumber)
+      }
+    },
+    compute: function() {
+      this.nextNumber = this.strToNum();
+      let result = 0;
       switch(this.operator) {
         case '+':
-          this.inputNumber = (this.prevNumber + this.nextNumber).toString();
-          console.log(this.inputNumber);
+          result = (this.prevNumber + this.nextNumber);
           break;
         case '-':
-          this.inputNumber = (this.prevNumber - this.nextNumber).toString();
+          result = (this.prevNumber - this.nextNumber);
           break;
         case '×':
-          this.inputNumber = (this.prevNumber * this.nextNumber).toString();
+          result = (this.prevNumber * this.nextNumber);
           break;
         case '÷':
-          this.inputNumber = (this.prevNumber / this.nextNumber).toString();
+          result = (this.prevNumber / this.nextNumber);
           break;
-      }      
+      }
+      if(Math.abs(result) === Infinity){
+        this.isInfinity = true;
+      } else if(result >= 0) {
+        this.isSign = false;
+      } else {
+        this.isSign = true;
+      }
       this.operator = '';
       this.isAssign = false;
+      this.inputNumber = Math.abs(result).toString();
     },    
     clear: function() {
-      this.prevNumber = 0,
-      this.nextNumber = 0,
-      this.inputNumber = '0',
-      this.operator = ''
+      this.prevNumber = 0;
+      this.nextNumber = 0;
+      this.inputNumber = '0';
+      this.operator = '';
+      this.isAssign = false;
+      this.isSign = false;
+      this.isInfinity = false;
+      this.pointIdx = null;
     },    
     percent: function() {
       this.inputNumber.value = (parseFloat(this.inputNumber) / 100).toString();

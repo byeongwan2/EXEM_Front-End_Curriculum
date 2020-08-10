@@ -2,7 +2,9 @@
   <div class="input-area">
       <div class="number-area">
         <percent-button v-on:emitToArea="percent"/>
-        <sign-button v-on:emitToArea="sign"/>
+        <sign-button v-on:emitToArea="sign"
+          v-on:keyup.tab="sign"
+        />
         <clear-button v-on:emitToArea="clear"/>
         <number-button
           v-for="number in numbers"
