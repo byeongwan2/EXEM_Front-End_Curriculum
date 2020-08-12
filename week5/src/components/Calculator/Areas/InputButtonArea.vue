@@ -2,20 +2,18 @@
   <div class="input-area">
       <div class="number-area">
         <percent-button v-on:emitToArea="percent"/>
-        <sign-button v-on:emitToArea="sign"
-          v-on:keyup.tab="sign"
-        />
+        <sign-button v-on:emitToArea="sign"/>
         <clear-button v-on:emitToArea="clear"/>
         <number-button
           v-for="number in numbers"
           v-bind:key="number"
           v-bind:number="number"
-          v-on:emitToArea="add"
+          v-on:emitToArea="input"
         />
         <point-button v-on:emitToArea="point"/>
         <number-button
           v-bind:number="'0'"
-          v-on:emitToArea="add"
+          v-on:emitToArea="input"
           class="zero-button"
         />
       </div>
@@ -26,9 +24,7 @@
           v-bind:operator="operator"
           v-on:emitToArea="setOperator"
         />
-        <compute-button
-          v-on:emitToArea="compute"
-        />
+        <compute-button v-on:emitToArea="compute"/>
       </div>
   </div>
 </template>
@@ -44,8 +40,8 @@ import ComputeButton from '../Buttons/ComputeButton.vue';
 
 export default {
   components: {
-    'clear-button': ClearButton,
-    'sign-button': SignButton,
+    ClearButton,
+    SignButton,
     'percent-button': PercentButton,
     'number-button': NumberButton,
     'point-button': PointButton,
@@ -59,8 +55,8 @@ export default {
     }
   },
   methods: {
-    add: function(number) {      
-      this.$emit('add', number);
+    input: function(number) {      
+      this.$emit('input', number);
     },
     percent: function() {
       this.$emit('percent');

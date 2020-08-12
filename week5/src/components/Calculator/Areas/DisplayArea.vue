@@ -10,7 +10,7 @@
       <p
         v-else
         v-bind:style="resizeFont()"
-        v-on="inputToDisplay()"
+        v-on="inputToDisplay"
         class="number"
       >
         {{ displayNumber }}
@@ -54,30 +54,28 @@ export default {
         this.floatNumber = "";
       }
     },
-    addComma: function() {      
+    checkComma: function() {        
       let count = 0;
-      if(this.intNumber.length % 3 === 0) {
-        count = (this.intNumber.length / 3) -1;
-      } else {
-        count = Math.floor(this.intNumber.length / 3);
-      }
-      const arrNumber = this.intNumber.split('');
       let idx = -3;
+      const arrNumber = this.intNumber.split('');
+
+      if(this.intNumber.length % 3 === 0) count = (this.intNumber.length / 3) -1;
+      else count = Math.floor(this.intNumber.length / 3);
+
       for(let i = 0; i < count; i++) {
         arrNumber.splice(idx, 0, ',');
         idx -= 4;
-      }      
+      }
+
       return arrNumber.join('');
     },    
-    addSign: function() {
-      if(this.isSign) {
-        return "-" + this.addComma() + this.floatNumber;
-      } else {
-        return this.addComma() + this.floatNumber;
-      }
+    checkSign: function() {
+      if(this.isSign) return "-" + this.checkComma() + this.floatNumber;
+      else return this.checkComma() + this.floatNumber;      
     },
     resizeFont: function() {
       const numberSize = this.inputNumber.length;
+      
       if(numberSize >= 10) {
         const fontSize = 60 - (numberSize * 2);
         return 'font-size: ' + fontSize + 'px';
@@ -85,20 +83,20 @@ export default {
     },
     inputToDisplay: function() {      
       this.splitNumber();
-      this.displayNumber = this.addSign();
+      this.displayNumber = this.checkSign();
     }
   }
 }
 </script>
 
-<style>  
+<style scoped>  
   .display {
     width: 300px;
     height: 100px;
     position: relative;
     background-color: black;
     color: white;
-    text-align: right;        
+    text-align: right;
   }
   .number {
     position: absolute;

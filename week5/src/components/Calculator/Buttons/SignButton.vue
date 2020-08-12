@@ -1,6 +1,6 @@
 <template>
-  <button
-    v-on:click="emitToArea"
+  <button    
+    v-on:click="emitToArea"    
     class="button"
   >
     +/-

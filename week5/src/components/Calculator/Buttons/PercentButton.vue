@@ -11,11 +11,6 @@
 import BaseButton from './BaseButton.vue'
 
 export default {
-  extends: BaseButton,  
-  methods: {
-    emitToArea: function() {
-      this.$emit('emitToArea');
-    }
-  }
+  extends: BaseButton  
 }
 </script>

@@ -11,7 +11,7 @@
       v-on:percent="percent"
       v-on:sign="sign"
       v-on:clear="clear"
-      v-on:add="add"
+      v-on:input="input"
       v-on:point="point"
       v-on:compute="compute"
       v-on:setOperator="setOperator"
@@ -40,8 +40,8 @@ export default {
       pointIdx: null
     }
   },
-  methods: {
-    add: function(value) {
+  methods: {      
+    input: function(value) {
       if(this.isInfinity) this.clear();
       if(this.operator && !this.isAssign) {
         this.prevNumber = this.strToNum();
@@ -50,11 +50,13 @@ export default {
         this.isSign = false;
       }
       if(this.inputNumber.length >= 16) return;
+
       this.inputNumber !== '0' ? this.inputNumber += value : this.inputNumber = value;
     },    
     point: function() {
       this.pointIdx = this.inputNumber.indexOf('.');
       if(this.pointIdx > 0) return;
+
       this.inputNumber += '.';
       this.pointIdx = this.inputNumber.length - 1;
     },
@@ -62,20 +64,19 @@ export default {
       this.operator = value;
     },
     sign: function() {
-      const numberSize = this.inputNumber.length;
-      if(this.inputNumber[0] === '0' && numberSize === 1) return;      
+      const numberSize = this.inputNumber.length;      
+      if(this.inputNumber[0] === '0' && numberSize === 1) return;   
+
       this.isSign = !this.isSign;
     },
     strToNum: function() {
-      if(this.isSign) {
-        return parseFloat(this.inputNumber) * -1;
-      } else {
-        return parseFloat(this.inputNumber)
-      }
+      if(this.isSign) return parseFloat(this.inputNumber) * -1;
+      else return parseFloat(this.inputNumber);      
     },
     compute: function() {
       this.nextNumber = this.strToNum();
       let result = 0;
+
       switch(this.operator) {
         case '+':
           result = (this.prevNumber + this.nextNumber);
@@ -90,13 +91,11 @@ export default {
           result = (this.prevNumber / this.nextNumber);
           break;
       }
-      if(Math.abs(result) === Infinity){
-        this.isInfinity = true;
-      } else if(result >= 0) {
-        this.isSign = false;
-      } else {
-        this.isSign = true;
-      }
+      
+      if(Math.abs(result) === Infinity) this.isInfinity = true;
+      else if(result >= 0) this.isSign = false;
+      else this.isSign = true;      
+
       this.operator = '';
       this.isAssign = false;
       this.inputNumber = Math.abs(result).toString();
@@ -112,7 +111,8 @@ export default {
       this.pointIdx = null;
     },    
     percent: function() {
-      this.inputNumber.value = (parseFloat(this.inputNumber) / 100).toString();
+      this.inputNumber = (parseFloat(this.inputNumber) / 100).toString();
+      this.pointIdx = this.inputNumber.indexOf('.');
     }
   }
 }

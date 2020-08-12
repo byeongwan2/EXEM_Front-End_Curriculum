@@ -8,9 +8,9 @@ export default {
 }
 </script>
 
-<style scoped>    
-  .button {    
-    width: 75px;
+<style scoped>
+  .button {
+    width: 75px;  
     height: 75px;
     float: right;
     color: black;
