@@ -1,6 +1,6 @@
 <template>
   <div class="calculator">
-    <display-area    
+    <display-area
       v-bind:inputNumber="inputNumber"
       v-bind:operator="operator"
       v-bind:isSign="isSign"
@@ -40,15 +40,24 @@ export default {
       pointIdx: null
     }
   },
+<<<<<<< HEAD
   methods: {      
     input: function(value) {
       if(this.isInfinity) this.clear();
+=======
+  methods: {
+    assignNumber: function() {
+>>>>>>> 1dfae11c46777fb41bd50fdd60d3b69cd8982b5c
       if(this.operator && !this.isAssign) {
         this.prevNumber = this.strToNum();
         this.inputNumber = '0';
         this.isAssign = true;
         this.isSign = false;
       }
+    },
+    add: function(value) {
+      if(this.isInfinity) this.clear();
+      this.assignNumber();
       if(this.inputNumber.length >= 16) return;
 
       this.inputNumber !== '0' ? this.inputNumber += value : this.inputNumber = value;
@@ -91,11 +100,17 @@ export default {
           result = (this.prevNumber / this.nextNumber);
           break;
       }
+<<<<<<< HEAD
       
       if(Math.abs(result) === Infinity) this.isInfinity = true;
       else if(result >= 0) this.isSign = false;
       else this.isSign = true;      
 
+=======
+      if(Math.abs(result) === Infinity) this.isInfinity = true;
+      else if(result >= 0) this.isSign = false;
+      else this.isSign = true;      
+>>>>>>> 1dfae11c46777fb41bd50fdd60d3b69cd8982b5c
       this.operator = '';
       this.isAssign = false;
       this.inputNumber = Math.abs(result).toString();

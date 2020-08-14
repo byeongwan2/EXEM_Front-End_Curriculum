@@ -58,20 +58,33 @@ export default {
       let count = 0;
       let idx = -3;
       const arrNumber = this.intNumber.split('');
+<<<<<<< HEAD
 
       if(this.intNumber.length % 3 === 0) count = (this.intNumber.length / 3) -1;
       else count = Math.floor(this.intNumber.length / 3);
 
+=======
+      if(this.intNumber.length % 3 === 0) count = (this.intNumber.length / 3) -1;
+      else count = Math.floor(this.intNumber.length / 3);      
+>>>>>>> 1dfae11c46777fb41bd50fdd60d3b69cd8982b5c
       for(let i = 0; i < count; i++) {
         arrNumber.splice(idx, 0, ',');
         idx -= 4;
       }
+<<<<<<< HEAD
 
       return arrNumber.join('');
     },    
     checkSign: function() {
       if(this.isSign) return "-" + this.checkComma() + this.floatNumber;
       else return this.checkComma() + this.floatNumber;      
+=======
+      return arrNumber.join('');
+    },    
+    addSign: function() {
+      if(this.isSign) return "-" + this.addComma() + this.floatNumber;
+      else return this.addComma() + this.floatNumber;      
+>>>>>>> 1dfae11c46777fb41bd50fdd60d3b69cd8982b5c
     },
     resizeFont: function() {
       const numberSize = this.inputNumber.length;
