@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.layers {
+    position: absolute;
+    display: flex;    
+    top: 30%;
+    width: 100vw;
+    height: 20vh;
+}
+.request-layer {
+    /* 색상값 16진수로 변경 */
+    width: 30%;
+    height: 100%;
+    background-color: bisque;
+}
+.delay-layer 
+{   width: 40%;
+    height: 100%;
+    background-color: cadetblue;
+}
+.response-layer {   
+    width: 30%;
+    height: 100%;
+    background-color: darkgoldenrod;    
+}
