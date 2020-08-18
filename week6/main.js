@@ -1,15 +1,17 @@
-const ballCreator = new BallCreator();
-const ballProcessor = new BallProcessor();
-const UI = new UI_Renderer();
+import BallProcessor from './class/BallProcessor.js';
+import DataCreator from './class/DataCreator.js';
+import Renderer from './class/Renderer.js';
 
-// ballCreator.createData(canvasList[1], radius)
-ballCreator.createData(UI.canvasList[1], UI.radius)
-ballProcessor.createRequestBall(UI.canvasList[0], UI.radius, ballCreator);
+const dataCreator = new DataCreator();
+const ballProcessor = new BallProcessor();
+const renderer = new Renderer();
+
+dataCreator.createData(renderer.canList[1], 5)
+ballProcessor.createReqBall(renderer.canList[0], 5, dataCreator);
 
 const update = (curTime) => {
-    UI.update();
-    ballProcessor.update(UI.canvasList, UI.ctxList, UI.colorList, curTime);
+    ballProcessor.update(renderer.canList, curTime);
+    renderer.update(ballProcessor.reqList, ballProcessor.levList, ballProcessor.resList);
     window.requestAnimationFrame(update);
 }
-// window.requestAnimationFrame(update);
-update();
+window.requestAnimationFrame(update);

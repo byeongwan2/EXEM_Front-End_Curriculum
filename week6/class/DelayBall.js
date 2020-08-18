@@ -1,4 +1,6 @@
-class DelayBall extends Ball{
+import Ball from './Ball.js';
+
+export default class DelayBall extends Ball{
     /**     
      * @param {number} x            Position X
      * @param {number} y            Position Y
@@ -15,23 +17,29 @@ class DelayBall extends Ball{
         this.startTime = 0;
         this.originLevel = level;
     }
+
     /**
-     * Check position, collision
+     * Check collision
+     * 
      * @param {canvas} canvas
      */
     onCollision(canvas) {
         const maxX = this.x + this.vx + this.radius;
+        const minX = this.x + this.vx - this.radius;
         const maxY = this.y + this.vy + this.radius;
+        const minY = this.y + this.vy - this.radius;
 
-        if(maxX > canvas.width || maxX < 0) {
+        if(maxX > canvas.width || minX < 0) {
             this.vx *= -1;
         }
-        if(maxY > canvas.height || maxY < 0) {
+        if(maxY > canvas.height || minY < canvas.height * 0.2) {
             this.vy *= -1;
         }
     }
+
     /**
      * Set remaining time
+     * 
      * @param {number} curTime
      */
     setRemainTime(curTime) {
@@ -41,6 +49,7 @@ class DelayBall extends Ball{
         const elapsedTime = (curTime * 0.001) - this.startTime;
         this.remainTime = this.delayTime - elapsedTime;
     }
+
     changeLevel() {
         if(this.remainTime < 5) {
             this.level = 1;
@@ -50,18 +59,17 @@ class DelayBall extends Ball{
             this.level = 3;
         }
     }
+
     /**
-     * Manage Ball's Animation
-     * @param {canvas} canvas
-     * @param {CanvasRenderingContext2D} ctx 
-     * @param {number} curTime
-     * @param {number[]} colorList 
+     * Update every frame
+     * 
+     * @param {canvas} canvas     
+     * @param {number} curTime     
      */
-    update(canvas, ctx, colorList, curTime) {
+    update(canvas, curTime) {
         this.setRemainTime(curTime);
         this.changeLevel();
-        this.physics();
-        this.onCollision(canvas);
-        this.draw(ctx, colorList);
+        super.update();
+        this.onCollision(canvas);        
     }
 }
