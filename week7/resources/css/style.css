@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+}
+svg {
+    width: 30%;
+    height: 100%;
+    background-color: #4C4C4C;
+}
+text {    
+    fill: #FFFFFF;
+    font-size: 10px;
+    text-anchor: end;
+}
+.layers {
+    position: absolute;
+    display: flex;
+    top: 30%;
+    width: 100vw;
+    height: 20vh;
+}
+.delay-area {
+    width: 40%;
+}
+.count {        
+    font-size: 18px;
+}
+.normal {    
+    fill: #4691FF;
+}
+.warning {    
+    fill: #F7FF48;
+}
+.danger {    
+    fill: #FF4848;
+}

@@ -87,8 +87,7 @@ export default class Renderer {
         this.ctxList.forEach((ctx, idx) => {
             const canWidth = this.canList[idx].width;
             const canHeight = this.canList[idx].height;
-            console.log(idx);
-            debugger;
+                        
             if(idx === 0 || idx === 2) {
                 ctx.fillStyle = 'rgba(76, 76, 76, 0.3)';
                 ctx.fillRect(0, canHeight * 0.2, canWidth, canHeight);
